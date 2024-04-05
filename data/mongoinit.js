@@ -6,9 +6,10 @@ import { connect, set } from "mongoose";
  */
 const MongoInit = async () =>
     connect(
-        "mongodb+srv://bramirez:xBu1RW4CroY5KUQp@fstack2.gepbzac.mongodb.net/?retryWrites=true&w=majority",
+        process.env.MONGODB_URI,
         {
             useNewUrlParser: true,
+            dbName: "full-stack",
         },
     )
         .then(() => {

@@ -5,6 +5,10 @@ import fs from "fs";
 import { MongoInit } from "./data/index.js";
 import Resolvers from "./resolvers/index.js";
 
+import dotenv from "dotenv";
+
+dotenv.config();
+
 const dbstatus = await MongoInit();
 if (!dbstatus) {
     console.error("Error connecting to MongoDB");
@@ -18,8 +22,9 @@ const server = new ApolloServer({
     resolvers: Resolvers,
 });
 
+const port = process.env.PORT;
 const { url } = await startStandaloneServer(server, {
-    listen: { port: 4000 },
+    listen: { port },
 });
 
 console.log(`🚀  Server ready at: ${url}`);
