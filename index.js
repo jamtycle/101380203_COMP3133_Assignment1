@@ -22,9 +22,10 @@ const server = new ApolloServer({
     resolvers: Resolvers,
 });
 
-const port = process.env.PORT;
+const port = process.env.PORT || 4000;
+const host = process.env.HOST || "localhost";
 const { url } = await startStandaloneServer(server, {
-    listen: { port },
+    listen: { port, host },
 });
 
 console.log(`🚀  Server ready at: ${url}`);
